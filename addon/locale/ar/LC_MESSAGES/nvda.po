@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 'dictionariesAlmaany' '1.1'\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@freelists.org'\n"
+"POT-Creation-Date: 2018-08-12 19:33+0300\n"
+"PO-Revision-Date: 2018-08-12 21:21+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.4\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Language: ar\n"
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
+#: addon\globalPlugins\dictionariesAlmaany\__init__.py:18 buildVars.py:17
+msgid "Dictionaries Almaany"
+msgstr "قواميس المعاني"
+
+#: addon\globalPlugins\dictionariesAlmaany\__init__.py:32
+msgid "Opens DictionariesAlmaany dialog to get meaning of words."
+msgstr "فتح محاورةْ قواميس المعاني, للحصول على معنى الكلمة"
+
+#: addon\globalPlugins\dictionariesAlmaany\myDialog.py:32
+msgid "Enter a word please"
+msgstr "أَدْخِل كلمة فضلا"
+
+#: addon\globalPlugins\dictionariesAlmaany\myDialog.py:39
+msgid "Choose Dictionary"
+msgstr "إختر القاموس"
+
+#: addon\globalPlugins\dictionariesAlmaany\myDialog.py:45
+msgid "OK"
+msgstr "موافق"
+
+#: addon\globalPlugins\dictionariesAlmaany\myDialog.py:49
+msgid "cancel"
+msgstr "إلغاء"
+
+#: addon\globalPlugins\dictionariesAlmaany\myDialog.py:76
+msgid "Sorry, Service not available."
+msgstr "عُذرا, الخدمة غير متاحة."
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#: buildVars.py:20
+msgid ""
+"\n"
+"\tThis addon helps get the meaning of single words from www.almaany.com "
+"website.\n"
+"\tPress nvda+windows+d, dictionaries almaany dialog will be displayed, and "
+"you will be standing on an edit field\n"
+"\tif when pressing this command, you were standing on a selected word, the "
+"word will be put in the edit field\n"
+"\totherwise, enter in the edit field the word you want, tab an choose the "
+"dictionary you want and press enter\n"
+"\tthe meaning of the word will be displayed in a separate browseable message "
+"box.\n"
+"\t"
+msgstr ""
+"\n"
+"\tهذه الإضافة تساعدك على الحصول على معاني الكلمات, من خلال موقع www.almaany."
+"com.\n"
+"\tبالضغط على الإختصار nvda+windows+d, ستظهر لك محاورةْ قواميس المعاني, و "
+"ستكون واقفا على مربع تحرير.  \n"
+"\tو قَبلَ ضغط الإختصار, إذا كنت واقفا على كلمة محددة, هذه الكلمة ستظهر في مربع "
+"التحرير  \n"
+"\tأو اكتب في مربع التحرير الكلمة التي تريد, ثم إضغط تاب لتقف على قائمةْ "
+"القواميس إختر منها القاموس الذي تريد و اضغطْ عليه إنتر.  \n"
+"\tو بعد ذاك, سيظهر معنى الكلمة في browseable message box أو نافذة تستطيع "
+"قراءتها و التنقل فيها كما في المتصفح.  \n"
+"\t"
