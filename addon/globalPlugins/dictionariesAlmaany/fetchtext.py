@@ -3,8 +3,12 @@
 #that contains the meaning of the selected word
 
 import textInfos
-import urllib
-from . import urllib2
+import sys
+if sys.version_info == 2:
+	import urllib
+	from . import urllib2
+else:
+	import urllib
 import random
 import re
 import api, ui
@@ -47,14 +51,14 @@ class MyThread(threading.Thread):
 		self.error= False
 
 	def run(self):
-		text= self.text.encode('utf8')
-		url= self.base_url+ urllib.quote(text)
-		request= urllib2.Request(url)
+		text= self.text.encode('utf8') if sys.version_info == 2 else self.text
+		url= self.base_url+ urllib.quote(text) if sys.version_info == 2 else self.base_url + urllib.parse.quote(text)
+		request= urllib2.Request(url) if sys.version_info == 2 else urllib.request.Request(url)
 		request.add_header('User-Agent', random.choice(userAgentList))
 		try:
 			#handle = urllib.urlopen(url)
-			handle = urllib2.urlopen(request)
-			html= handle.read()
+			handle = urllib2.urlopen(request) if sys.version_info == 2 else urllib.request.urlopen(request)
+			html= handle.read() if sys.version_info == 2 else handle.read().decode(handle.headers.get_content_charset())
 			handle.close()
 #			log.info(html)
 		except IOError:
@@ -71,5 +75,5 @@ class MyThread(threading.Thread):
 				self.error= True
 			else:
 				page= content +"<p> <a href=%s>"%(url) +"Look for the meaning in the browser</a></p>"
-				page= unicode(page, 'utf-8')
+				page= unicode(page, 'utf-8') if sys.version_info == 2 else page
 				self.meaning= page
