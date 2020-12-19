@@ -3,8 +3,8 @@
 
 import wx
 import queueHandler
-from fetchtext import MyThread
-from fetchtext import isSelectedText
+from .fetchtext import MyThread
+from .fetchtext import isSelectedText
 from tones import beep
 import time
 import ui

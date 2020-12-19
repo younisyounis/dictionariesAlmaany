@@ -7,7 +7,7 @@
 
 import gui
 import globalPluginHandler
-from myDialog import MyDialog
+from .myDialog import MyDialog
 from logHandler import log
 import addonHandler
 addonHandler.initTranslation()
