@@ -3,13 +3,44 @@
 
 import wx
 import queueHandler
+import config
 from .fetchtext import MyThread
 from .fetchtext import isSelectedText
+from .getbrowsers import getBrowsers
 from tones import beep
 import time
+import subprocess
+import threading
+import tempfile
 import ui
+import os
 import addonHandler
 addonHandler.initTranslation()
+
+#browsers as dictionary with label as key, and executable path as value.
+browsers= getBrowsers()
+
+def appIsRunning(app):
+	'''Checks if specific app is running or not.
+	'''
+	processes= subprocess.check_output('tasklist', shell=True).decode()
+	return app in processes
+
+def openBrowserWindow(label, meaning, directive):
+	html= """
+	<!DOCTYPE html>
+	<meta charset=utf-8>
+	<title>{title}</title>
+	<meta name=viewport content='initial-scale=1.0'>
+	""".format(title= _('Dictionaries Almaany')) + meaning 
+	f= tempfile.NamedTemporaryFile(mode= 'w', encoding= 'utf-8', suffix= '.html', delete= False)
+	f.write(html)
+	f.close()
+	path= os.path.join('file:///', f.name)
+	subprocess.Popen(browsers[label] + directive + path)
+	t=threading.Timer(30.0, os.remove, [f.name])
+	t.start()
+
 #dictionaries url
 dictionaries_url= ['http://www.almaany.com/ar/dict/ar-ar/', 'http://www.almaany.com/ar/dict/ar-en/',
 'http://www.almaany.com/ar/dict/ar-fr/', 'https://www.almaany.com/en/dict/en-en/',
@@ -70,10 +101,20 @@ class MyDialog(wx.Dialog):
 		t.join()
 
 		title= u'المَعَاني message box'
-		if t.meaning:
+		useBrowserWindow= config.conf["dictionariesAlmaany"]["windowType"]== 0
+		useNvdaMessageBox= config.conf["dictionariesAlmaany"]["windowType"]== 1
+		if t.meaning and useBrowserWindow:
+			if 'Firefox' in browsers and not appIsRunning('firefox.exe'):
+				openBrowserWindow('Firefox', t.meaning, directive= ' --kiosk ')
+			elif 'Google Chrome' in browsers and not appIsRunning('chrome.exe'):
+				openBrowserWindow('Google Chrome', t.meaning, directive= ' -kiosk ')
+			elif 'Internet Explorer' in browsers:
+				openBrowserWindow('Internet Explorer', t.meaning, directive= ' -k -private ')
+		elif t.meaning and useNvdaMessageBox:
 			queueHandler.queueFunction(queueHandler.eventQueue, ui.browseableMessage, t.meaning, title=title, isHtml=True)
+			return
 		elif t.error:
-			queueHandler.queueFunction(queueHandler.eventQueue, ui.message, _("Sorry, Service not available."))
+			queueHandler.queueFunction(queueHandler.eventQueue, ui.message, _("Sorry, Service not available({})".format(t.error)))
 
 	def onOk(self, e):
 		word= self.editTextControl.GetValue()
@@ -83,8 +124,11 @@ class MyDialog(wx.Dialog):
 		else:
 			i= self.cumbo.GetSelection()
 			dict_url= dictionaries_url[i]
-			#self.getMeaning(word, dict_url)
-			wx.CallAfter(self.getMeaning, word, dict_url)
+			self.getMeaning(word, dict_url)
+			#wx.CallAfter(self.getMeaning, word, dict_url)
+			closeDialogAfterRequiringTranslation= config.conf["dictionariesAlmaany"]["closeDialogAfterRequiringTranslation"]
+			if closeDialogAfterRequiringTranslation:
+				wx.CallLater(4000, self.Destroy)
 
 	def onCancel (self, e):
 		self.Destroy()

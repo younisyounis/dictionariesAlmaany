@@ -36,10 +36,14 @@ def isSelectedText():
 
 #list of fake user agent
 userAgentList=['Mozilla/5.0', 'Safari/537.36', 'Chrome/67.0.3396.99', 'iexplore/11.0.9600.19080', 'Trident/7.0', 'SeaMonkey/2.40', 'Wyzo/3.6.4.1', 'OPR/54.0.2952.64']
-
+'''
 regex1= '(<h1 class="section">[\s\S]+<h1 class="section">[\s\S]+?)<h[23456]'
 regex2= '(<h1 class="section">[\s\S]+?)<h[23456]'
 regex3= '(<h1>[\s\S]+?)<h[23456]'
+'''
+regex1= '(<h1 class="section">[\s\S]+<h1 class="section">[\s\S]+?)<h[23456]'
+regex2= '(<h1 class="section">[\s\S]+?)<h[23456]'
+regex3= '(<h1>[\s\S]+?<h2>[\s\S]+?</h2>[\s\S]+?)<h[23456]'
 
 class MyThread(threading.Thread):
 	def __init__(self, text, base_url):
@@ -61,8 +65,9 @@ class MyThread(threading.Thread):
 			html= handle.read() if sys.version_info == 2 else handle.read().decode(handle.headers.get_content_charset())
 			handle.close()
 #			log.info(html)
-		except IOError:
-			self.error= True
+		except Exception as e:
+			log.info('', exc_info= True)
+			self.error= str(e)
 		else:
 			try:
 				content= re.findall(regex1, html)
@@ -71,9 +76,11 @@ class MyThread(threading.Thread):
 				if not content:
 					content= re.findall(regex3, html)
 				content= content[0]
-			except:
-				self.error= True
+			except Exception as e:
+				log.info('', exc_info= True)
+				self.error= str(e)
 			else:
 				page= content +"<p> <a href=%s>"%(url) +"Look for the meaning in the browser</a></p>"
 				page= unicode(page, 'utf-8') if sys.version_info == 2 else page
+				#ui.browseableMessage(page, "قاموس المَعَاني", isHtml= True)
 				self.meaning= page
