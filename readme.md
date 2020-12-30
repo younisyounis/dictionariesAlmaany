@@ -49,4 +49,4 @@ fixing some bugs, getting the addon to return to work after it has stopped worki
 
 *	Thanks to Abdel contribution for porting the addon to python3, and using last nvda addon template.  
 
-[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/v2.0/DictionariesAlmaany-2.0.nvda-addon
+[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/v2.1/DictionariesAlmaany-2.1.nvda-addon

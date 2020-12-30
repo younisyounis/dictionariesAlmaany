@@ -49,3 +49,5 @@
 ### المساهمات ###
 
 *	الشكر الكبير للأخ العزيز عبد الكريم, لمساهمته بتطوير الإضافة للتوافق مع بايثون3, و استخدام أحدث نموذج لعمل الإضافات.  
+
+[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/v2.1/DictionariesAlmaany-2.1.nvda-addon
