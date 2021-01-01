@@ -4,6 +4,7 @@
 import wx
 import queueHandler
 import config
+import sys
 from .fetchtext import MyThread
 from .fetchtext import isSelectedText
 from .getbrowsers import getBrowsers
@@ -16,14 +17,16 @@ import ui
 import os
 import addonHandler
 addonHandler.initTranslation()
-
+if sys.version_info.major == 2:
+	import io
+	open = io.open
 #browsers as dictionary with label as key, and executable path as value.
 browsers= getBrowsers()
 
 def appIsRunning(app):
 	'''Checks if specific app is running or not.
 	'''
-	processes= subprocess.check_output('tasklist', shell=True).decode()
+	processes= subprocess.check_output('tasklist', shell=True).decode('mbcs')
 	return app in processes
 
 def openBrowserWindow(label, meaning, directive):
@@ -33,8 +36,8 @@ def openBrowserWindow(label, meaning, directive):
 	<title>{title}</title>
 	<meta name=viewport content='initial-scale=1.0'>
 	""".format(title= _('Dictionaries Almaany')) + meaning 
-	f= tempfile.NamedTemporaryFile(mode= 'w', encoding= 'utf-8', suffix= '.html', delete= False)
-	f.write(html)
+	f= tempfile.NamedTemporaryFile(mode= 'w', encoding= 'utf-8', suffix= '.html', delete= False) if sys.version_info.major > 2 else tempfile.NamedTemporaryFile(mode= 'w', suffix= '.html', delete= False)
+	f.write((html if sys.version_info.major > 2 else html.encode('utf-8')))
 	f.close()
 	path= os.path.join('file:///', f.name)
 	subprocess.Popen(browsers[label] + directive + path)
@@ -99,6 +102,7 @@ class MyDialog(wx.Dialog):
 			beep(500, 100)
 			time.sleep(0.5)
 		t.join()
+
 
 		title= u'المَعَاني message box'
 		useBrowserWindow= config.conf["dictionariesAlmaany"]["windowType"]== 0
