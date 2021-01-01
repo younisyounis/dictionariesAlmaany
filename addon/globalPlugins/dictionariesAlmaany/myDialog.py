@@ -5,6 +5,7 @@ import wx
 import queueHandler
 import config
 import sys
+import webbrowser
 from .fetchtext import MyThread
 from .fetchtext import isSelectedText
 from .getbrowsers import getBrowsers
@@ -36,11 +37,15 @@ def openBrowserWindow(label, meaning, directive):
 	<title>{title}</title>
 	<meta name=viewport content='initial-scale=1.0'>
 	""".format(title= _('Dictionaries Almaany')) + meaning 
-	f= tempfile.NamedTemporaryFile(mode= 'w', encoding= 'utf-8', suffix= '.html', delete= False) if sys.version_info.major > 2 else tempfile.NamedTemporaryFile(mode= 'w', suffix= '.html', delete= False)
-	f.write((html if sys.version_info.major > 2 else html.encode('utf-8')))
+	temp= tempfile.NamedTemporaryFile(delete=False)
+	path = temp.name + ".html"
+	f = open(path, "w", encoding="utf-8")
+	f.write(html)
 	f.close()
+	#webbrowser.open ("file://" + path)
 	path= os.path.join('file:///', f.name)
-	subprocess.Popen(browsers[label] + directive + path)
+	#subprocess.Popen(browsers[label] + directive + path)
+	webbrowser.open(path)
 	t=threading.Timer(30.0, os.remove, [f.name])
 	t.start()
 
