@@ -42,8 +42,6 @@ def openBrowserWindow(label, meaning, directive):
 	f = open(path, "w", encoding="utf-8")
 	f.write(html)
 	f.close()
-	#webbrowser.open ("file://" + path)
-	path= os.path.join('file:///', f.name)
 	#subprocess.Popen(browsers[label] + directive + path)
 	webbrowser.open(path)
 	t=threading.Timer(30.0, os.remove, [f.name])
