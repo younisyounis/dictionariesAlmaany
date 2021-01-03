@@ -4,7 +4,7 @@
 
 import textInfos
 import sys
-if sys.version_info == 2:
+if sys.version_info.major == 2:
 	import urllib
 	from . import urllib2
 else:
@@ -55,14 +55,14 @@ class MyThread(threading.Thread):
 		self.error= False
 
 	def run(self):
-		text= self.text.encode('utf8') if sys.version_info == 2 else self.text
-		url= self.base_url+ urllib.quote(text) if sys.version_info == 2 else self.base_url + urllib.parse.quote(text)
-		request= urllib2.Request(url) if sys.version_info == 2 else urllib.request.Request(url)
+		text= self.text.encode('utf8') if sys.version_info.major == 2 else self.text
+		url= self.base_url+ urllib.quote(text) if sys.version_info.major == 2 else self.base_url + urllib.parse.quote(text)
+		request= urllib2.Request(url) if sys.version_info.major == 2 else urllib.request.Request(url)
 		request.add_header('User-Agent', random.choice(userAgentList))
 		try:
 			#handle = urllib.urlopen(url)
-			handle = urllib2.urlopen(request) if sys.version_info == 2 else urllib.request.urlopen(request)
-			html= handle.read() if sys.version_info == 2 else handle.read().decode(handle.headers.get_content_charset())
+			handle = urllib2.urlopen(request) if sys.version_info.major == 2 else urllib.request.urlopen(request)
+			html= handle.read() if sys.version_info.major == 2 else handle.read().decode(handle.headers.get_content_charset())
 			handle.close()
 #			log.info(html)
 		except Exception as e:
@@ -81,6 +81,6 @@ class MyThread(threading.Thread):
 				self.error= str(e)
 			else:
 				page= content +"<p> <a href=%s>"%(url) +"Look for the meaning in the browser</a></p>"
-				page= unicode(page, 'utf-8') if sys.version_info == 2 else page
+				page= unicode(page, 'utf-8') if sys.version_info.major == 2 else page
 				#ui.browseableMessage(page, "قاموس المَعَاني", isHtml= True)
 				self.meaning= page
