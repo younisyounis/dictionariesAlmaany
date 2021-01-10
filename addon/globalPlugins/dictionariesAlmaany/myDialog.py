@@ -5,7 +5,7 @@ import wx
 import queueHandler
 import config
 import sys
-import webbrowser
+#import webbrowser
 from .fetchtext import MyThread
 from .fetchtext import isSelectedText
 from .getbrowsers import getBrowsers
@@ -42,8 +42,8 @@ def openBrowserWindow(label, meaning, directive):
 	f = open(path, "w", encoding="utf-8")
 	f.write(html)
 	f.close()
-	#subprocess.Popen(browsers[label] + directive + path)
-	webbrowser.open(path)
+	subprocess.Popen(browsers[label] + directive + path)
+	#webbrowser.open(path)
 	t=threading.Timer(30.0, os.remove, [f.name])
 	t.start()
 
