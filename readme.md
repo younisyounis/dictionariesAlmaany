@@ -1,7 +1,8 @@
 # Dictionaries Almaany #
 
 Author: Ibrahim Hamadeh  
-Download [version 2.1][1]  
+contributors: Abdel  
+Download [version 2.2-dev][1]  
 
 This addon helps you get the meaning of single words through the almaany.com website.  
 [almaany.com](https://www.almaany.com/en/dict/ar-en/ "With a Title").
@@ -17,7 +18,7 @@ and you will be standing on an edit field
 if when pressing this command, you were standing on a selected word, the word will be put in the edit field  
 *	otherwise, enter in the edit field the word you want, tab an choose the dictionary you want and press enter on it.  
 if you want to get the meaning in the default Arabic to Arabic dictionary, you can always press enter on the edit field and after that the meaning of the word will be displayed in a separate browseable window.  
-*	You can moreover, going to addon's setting dialog, through NVDA menu/preferences/dictionaries almaany  
+*	You can moreover, going to addon's setting dialog, through NVDA menu/preferences/Settings/dictionaries almaany  
 from there, you can choose the type of window used to display the meaning.  
 the default and first choice, is a browser like window as in firefox or google chrome, it is a browser window without file menus or address brar.  
 please remember you can close this window only, with control+w or alt+f4.  
@@ -49,4 +50,4 @@ fixing some bugs, getting the addon to return to work after it has stopped worki
 
 *	Thanks to Abdel contribution for porting the addon to python3, and using last nvda addon template.  
 
-[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/v2.1/DictionariesAlmaany-2.1.nvda-addon
+[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/2.2-dev/DictionariesAlmaany-2.2-dev.nvda-addon
