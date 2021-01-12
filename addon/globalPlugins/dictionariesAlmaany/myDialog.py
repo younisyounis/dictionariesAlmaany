@@ -123,7 +123,7 @@ class MyDialog(wx.Dialog):
 		elif t.error:
 			if t.error== "HTTP Error 410: Gone":
 				msg= "No meaning found"
-			if t.error== "<urlopen error [Errno 11001] getaddrinfo failed>":
+			elif t.error== "<urlopen error [Errno 11001] getaddrinfo failed>":
 				msg= "Most likely no internet connection"
 			else:
 				msg= t.error
