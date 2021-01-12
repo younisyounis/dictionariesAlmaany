@@ -2,7 +2,7 @@
 
 المطَوِّر: Ibrahim Hamadeh  
 ساهمَ في الإضافة: Abdel  
-تحميل [الإصدار 2.2][1]  
+تحميل [الإصدار 2.21][1]  
 
 هذه الإضافة تساعدك على الحصول على معاني الكلمات, من خلال موقع www.almaany.com.  
 [almaany.com](https://www.almaany.com/en/dict/ar-en/ "With a Title").
@@ -51,4 +51,4 @@
 
 *	الشكر الكبير للأخ العزيز عبد الكريم, لمساهمته بتطوير الإضافة للتوافق مع بايثون3, و استخدام أحدث نموذج لعمل الإضافات.  
 
-[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/2.2/DictionariesAlmaany-2.2.nvda-addon
+[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/2.21/DictionariesAlmaany-2.21.nvda-addon

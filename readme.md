@@ -2,7 +2,7 @@
 
 Author: Ibrahim Hamadeh  
 Contributors: Abdel  
-Download [version 2.2][1]  
+Download [version 2.21][1]  
 
 This addon helps you get the meaning of single words through the almaany.com website.  
 [almaany.com](https://www.almaany.com/en/dict/ar-en/ "With a Title").
@@ -51,4 +51,4 @@ fixing some bugs, getting the addon to return to work after it has stopped worki
 
 *	Thanks to Abdel contribution for porting the addon to python3, and using last nvda addon template.  
 
-[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/2.2/DictionariesAlmaany-2.2.nvda-addon
+[1]: https://github.com/ibrahim-h/dictionariesAlmaany/releases/download/2.21/DictionariesAlmaany-2.21.nvda-addon

@@ -121,7 +121,13 @@ class MyDialog(wx.Dialog):
 			queueHandler.queueFunction(queueHandler.eventQueue, ui.browseableMessage, t.meaning, title=title, isHtml=True)
 			return
 		elif t.error:
-			queueHandler.queueFunction(queueHandler.eventQueue, ui.message, _("Sorry, Service not available({})".format(t.error)))
+			if t.error== "HTTP Error 410: Gone":
+				msg= "No meaning found"
+			if t.error== "<urlopen error [Errno 11001] getaddrinfo failed>":
+				msg= "Most likely no internet connection"
+			else:
+				msg= t.error
+			queueHandler.queueFunction(queueHandler.eventQueue, ui.message, _("Sorry, Service not available({})".format(msg)))
 
 	def onOk(self, e):
 		word= self.editTextControl.GetValue()
