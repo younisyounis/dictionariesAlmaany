@@ -42,7 +42,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def onOpenSettingDialog(self, evt):
 		gui.mainFrame._popupSettingsDialog(DictionariesAlmaany)
-#		pass
 
 	def terminate(self):
 		if hasattr(gui, 'SettingsPanel'):
@@ -81,10 +80,10 @@ class DictionariesAlmaany(parentClass):
 		settingsSizerHelper = guiHelper.BoxSizerHelper(self, sizer=sizer)
 
 		# Translators: Type of windows to display translation result.
-		windowTypes= [_("Browser window(like firefox or chrome)"), _("NVDA browseable message box(choose it after testing)")]
+		windowTypes= [_("Default full browser"), _("Browser window only"), _("NVDA browseable message box(choose it after testing)")]
 		self.resultWindowComboBox= settingsSizerHelper.addLabeledControl(
-		# Translators: label of cumbo box of types of windows.
-		_("The Window To Display Result:"), 
+		# Translators: label of cumbo box to choose type of window to display result.
+		_("Choose type of window To Display Result:"), 
 		wx.Choice, choices= windowTypes)
 		self.resultWindowComboBox.SetSelection(config.conf["dictionariesAlmaany"]["windowType"])
 

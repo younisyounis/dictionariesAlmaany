@@ -5,7 +5,7 @@ import wx
 import queueHandler
 import config
 import sys
-#import webbrowser
+import webbrowser
 from .fetchtext import MyThread
 from .fetchtext import isSelectedText
 from .getbrowsers import getBrowsers
@@ -25,12 +25,11 @@ if sys.version_info.major == 2:
 browsers= getBrowsers()
 
 def appIsRunning(app):
-	'''Checks if specific app is running or not.
-	'''
+	'''Checks if specific app is running or not.'''
 	processes= subprocess.check_output('tasklist', shell=True).decode('mbcs')
 	return app in processes
 
-def openBrowserWindow(label, meaning, directive):
+def openBrowserWindow(label, meaning, directive, default= False):
 	html= """
 	<!DOCTYPE html>
 	<meta charset=utf-8>
@@ -42,17 +41,27 @@ def openBrowserWindow(label, meaning, directive):
 	f = open(path, "w", encoding="utf-8")
 	f.write(html)
 	f.close()
-	subprocess.Popen(browsers[label] + directive + path)
-	#webbrowser.open(path)
+	if default:
+		webbrowser.open(path)
+	else:
+		subprocess.Popen(browsers[label] + directive + path)
 	t=threading.Timer(30.0, os.remove, [f.name])
 	t.start()
 
-#dictionaries url
-dictionaries_url= ['http://www.almaany.com/ar/dict/ar-ar/', 'http://www.almaany.com/ar/dict/ar-en/',
-'http://www.almaany.com/ar/dict/ar-fr/', 'https://www.almaany.com/en/dict/en-en/',
-'http://www.almaany.com/ar/dict/ar-es/',
-'http://www.almaany.com/ar/dict/ar-tr/', 'http://www.almaany.com/ar/dict/ar-fa/',
-'http://www.almaany.com/ar/name/'
+#dictionaries name and url
+dictionaries_nameAndUrl= [(u'معجم عربي عربي', 'http://www.almaany.com/ar/dict/ar-ar/'),
+(u'قاموس عربي إنجليزي', 'http://www.almaany.com/ar/dict/ar-en/'),
+(u'قاموس عربي فرنسي', 'http://www.almaany.com/ar/dict/ar-fr/'),
+(u'قاموس إنجليزي إنجليزي', 'https://www.almaany.com/en/dict/en-en/'),
+(u'قاموس عربي ⇔ إسباني', 'http://www.almaany.com/ar/dict/ar-es/'),
+(u'قاموس عربي ⇔ تركي', 'http://www.almaany.com/ar/dict/ar-tr/'),
+(u'قاموس عربي ⇐ فارسي', 'http://www.almaany.com/ar/dict/ar-fa/'),
+(u'قاموس عربي ⇔ ألماني', 'https://www.almaany.com/ar/dict/ar-de/'),
+(u'قاموس عربي ⇔ روسي', 'https://www.almaany.com/ar/dict/ar-ru/'),
+(u'قاموس عربي ⇔ برتغالي', 'https://www.almaany.com/ar/dict/ar-pt/'),
+(u'قاموس عربي ⇔ اندونيسي', 'https://www.almaany.com/ar/dict/ar-id/'),
+(u'قاموس عربي ⇐ اردو', 'https://www.almaany.com/ar/dict/ar-ur/'),
+(u'مَعاني الأسماء', 'http://www.almaany.com/ar/name/')
 ]
 
 class MyDialog(wx.Dialog):
@@ -60,11 +69,7 @@ class MyDialog(wx.Dialog):
 		super(MyDialog, self).__init__(parent, title = 'Dictionaries Almaany', size = (300, 500))
 		self.word= word
 		#list of available dictionaries
-		self.dictionaries= [u'معجم عربي عربي', u'قاموس عربي إنجليزي',
-		u'قاموس عربي فرنسي', u'قاموس إنجليزي إنجليزي',
-		u'قاموس عربي ⇔ إسباني',
-		u'قاموس عربي ⇔ تركي', u'قاموس عربي ⇐ فارسي',
-		u'معاني الأسماء']
+		self.dictionaries= [name for name, url in dictionaries_nameAndUrl]
 		panel = wx.Panel(self, -1)
 		editTextLabel= wx.StaticText(panel, -1, _("Enter a word please"))
 		editBoxSizer =  wx.BoxSizer(wx.HORIZONTAL)
@@ -106,11 +111,13 @@ class MyDialog(wx.Dialog):
 			time.sleep(0.5)
 		t.join()
 
-
 		title= u'المَعَاني message box'
-		useBrowserWindow= config.conf["dictionariesAlmaany"]["windowType"]== 0
-		useNvdaMessageBox= config.conf["dictionariesAlmaany"]["windowType"]== 1
-		if t.meaning and useBrowserWindow:
+		useDefaultFullBrowser= config.conf["dictionariesAlmaany"]["windowType"]== 0
+		useBrowserWindowOnly= config.conf["dictionariesAlmaany"]["windowType"]== 1
+		useNvdaMessageBox= config.conf["dictionariesAlmaany"]["windowType"]== 2
+		if t.meaning and useDefaultFullBrowser:
+			openBrowserWindow('default', t.meaning, directive= '', default= True)
+		elif t.meaning and useBrowserWindowOnly:
 			if 'Firefox' in browsers and not appIsRunning('firefox.exe'):
 				openBrowserWindow('Firefox', t.meaning, directive= ' --kiosk ')
 			elif 'Google Chrome' in browsers and not appIsRunning('chrome.exe'):
@@ -136,7 +143,7 @@ class MyDialog(wx.Dialog):
 			return
 		else:
 			i= self.cumbo.GetSelection()
-			dict_url= dictionaries_url[i]
+			dict_url= dictionaries_nameAndUrl[i][1]
 			self.getMeaning(word, dict_url)
 			#wx.CallAfter(self.getMeaning, word, dict_url)
 			closeDialogAfterRequiringTranslation= config.conf["dictionariesAlmaany"]["closeDialogAfterRequiringTranslation"]

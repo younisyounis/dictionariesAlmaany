@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 'dictionariesAlmaany' '2.1'\n"
+"Project-Id-Version: 'dictionariesAlmaany' '2.3'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@freelists.org'\n"
-"POT-Creation-Date: 2020-12-29 21:08+0200\n"
-"PO-Revision-Date: 2020-12-30 00:26+0200\n"
+"POT-Creation-Date: 2021-03-07 20:00+0200\n"
+"PO-Revision-Date: 2021-03-07 20:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -21,8 +21,8 @@ msgstr ""
 
 #. Translators: title of the dialog
 #: addon\globalPlugins\DictionariesAlmaany\__init__.py:27
-#: addon\globalPlugins\DictionariesAlmaany\__init__.py:78
-#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:35
+#: addon\globalPlugins\DictionariesAlmaany\__init__.py:77
+#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:38
 msgid "Dictionaries Almaany"
 msgstr "قواميس المَعاني"
 
@@ -31,46 +31,50 @@ msgstr "قواميس المَعاني"
 msgid "&Dictionaries Almaany..."
 msgstr "قواميس المَعاني"
 
-#: addon\globalPlugins\DictionariesAlmaany\__init__.py:68
+#: addon\globalPlugins\DictionariesAlmaany\__init__.py:67
 msgid "Opens DictionariesAlmaany dialog to get meaning of words."
 msgstr "فتح محاورةْ قواميس المعاني, للحصول على معنى الكلمة"
 
 #. Translators: Type of windows to display translation result.
-#: addon\globalPlugins\DictionariesAlmaany\__init__.py:84
-msgid "Browser window(like firefox or chrome)"
-msgstr "نافذةْ المتصفح)مثل Firefox أو Chrome("
+#: addon\globalPlugins\DictionariesAlmaany\__init__.py:83
+msgid "Default full browser"
+msgstr "المتصفح الإفتراضي العادي"
 
-#: addon\globalPlugins\DictionariesAlmaany\__init__.py:84
+#: addon\globalPlugins\DictionariesAlmaany\__init__.py:83
+msgid "Browser window only"
+msgstr "نافذةْ المتصفح فقط"
+
+#: addon\globalPlugins\DictionariesAlmaany\__init__.py:83
 msgid "NVDA browseable message box(choose it after testing)"
 msgstr "نافذةْ NVDA browseable message box(مِن الأفضل تجربتها قبل الإختيار)"
 
-#. Translators: label of cumbo box of types of windows.
-#: addon\globalPlugins\DictionariesAlmaany\__init__.py:87
-msgid "The Window To Display Result:"
-msgstr "اختيار نافذةْ النتائج"
+#. Translators: label of cumbo box to choose type of window to display result.
+#: addon\globalPlugins\DictionariesAlmaany\__init__.py:86
+msgid "Choose type of window To Display Result:"
+msgstr "اختيار نافذةْ النتائج:"
 
 #. Translators: label of the check box
-#: addon\globalPlugins\DictionariesAlmaany\__init__.py:92
+#: addon\globalPlugins\DictionariesAlmaany\__init__.py:91
 msgid "&Close Dictionaries Almaany Dialog after requiring translation"
 msgstr "إغلاق محاورةْ قواميس المَعاني بعد طلب معنى الكلمة"
 
-#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:63
+#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:74
 msgid "Enter a word please"
 msgstr "أَدْخِل كلمة فضلا"
 
-#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:70
+#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:81
 msgid "Choose Dictionary"
 msgstr "إختر القاموس"
 
-#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:76
+#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:87
 msgid "OK"
 msgstr "موافق"
 
-#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:80
+#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:91
 msgid "cancel"
 msgstr "إلغاء"
 
-#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:117
+#: addon\globalPlugins\DictionariesAlmaany\myDialog.py:137
 msgid "Sorry, Service not available({})"
 msgstr "عُذرا, الخدمة غير متاحة({})"
 
@@ -115,3 +119,6 @@ msgstr ""
 "\tو بعد ذاك, سيظهر معنى الكلمة في browseable message box أو نافذة تستطيع "
 "قراءتها و التنقل فيها كما في المتصفح.  \n"
 "\t"
+
+#~ msgid "Browser window(like firefox or chrome)"
+#~ msgstr "نافذةْ المتصفح)مثل Firefox أو Chrome("
